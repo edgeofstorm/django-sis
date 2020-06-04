@@ -1,0 +1,42 @@
+{% url 'exams:list' as examlist %}
+{% url 'home' as home %}
+{% url 'classrooms:list' as classroomlist %}
+{% url 'users:student_list' as studentlist %}
+<nav class="navbar navbar-light bg-info ssidebar">
+    <div class="container pt-0 mt-0">
+        <ul class="navbar-nav pt-0">
+            <li class="nav-item dropdown py-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Dashboard
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item active" href="#">Admin</a>
+                    <a class="dropdown-item" href="#">Teacher</a>
+                    <a class="dropdown-item" href="#">Student</a>
+            </li>
+            <li class="nav-item {% if request.path == home %}active mx-auto{%endif%} py-2">
+                <a class="nav-link" href="{{ home }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item {% if request.path == examlist %}active mx-auto{%endif%} py-2">
+                <a class="nav-link" href="{% url 'exams:list' %}">Exams</a>
+            </li>
+            <li class="nav-item {% if request.path == classroomlist %}active mx-auto{%endif%} py-2">
+                <a class="nav-link" href="{{ classroomlist }}">Classrooms</a>
+            </li>
+            <li class="nav-item {% if request.path == studentlist %}active mx-auto{%endif%} py-2">
+                <a class="nav-link" href="{{ studentlist }}">Students</a>
+            </li>
+            <li class="nav-item py-2">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item py-2">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item py-2">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+    </div>
+   
+    <nav>

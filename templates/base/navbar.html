@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-md navbar-light bg-custom fixed-top">
+    <div class="container-fluid">
+        <div class="row w-100">
+            <div class="col-2">
+                <a href="/" class="navbar-brand bg-mix mr-5"><i class="fas fa-school"></i> School</a>
+            </div>
+            <div class="col-10">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                    <ul class="navbar-nav ml-0"> <!-- ml-5 -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Link <span class="sr-only">Home</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mx-auto">
+                        <div class="row w-100">
+                            <div class="col">
+                                <li class="nav-item d-inline w-100">
+                                    <form class="input-group">
+                                        <div class="input-group" style="width: 500px;">
+                                            <input type="text" class="form-control border-right-0"
+                                                placeholder="Search for students, teachers, exams and more">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-warning border-left-0" type="button">Search</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                            </div>
+                        </div>
+                        
+                        <!-- <form class="d-block w-100">
+                        <div class="input-group">
+                            <input type="text" class="form-control border-right-0" placeholder="...">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary border-left-0" type="button">GO</button>
+                            </div>
+                        </div>
+                    </form> -->
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{ request.user.username }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">logout</a>
+                        </li>
+                        {% else %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

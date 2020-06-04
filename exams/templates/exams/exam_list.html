@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-7">
+        <h2>Sonuclanan denemeler</h2>
+        <hr>
+        <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Tarih</th>
+                <th scope="col">Ort. Net</th>
+                <th scope="col">Sinif</th>
+              </tr>
+            </thead>
+            <tbody>
+                    {% for object in object_list %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td><a href="{% url 'exams:detail' pk=object.pk %}">{{ object.title }}</a></td>
+                            <td>{{ object.timestamp }}</td>
+                            <td>56</td>
+                            <!-- {{ object.grade }} add this to model -->
+                            <td><a href="">{{ object.result.student.classroom }}</a></td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                            <td colspan="6" style="text-align: center;"> <a href=""><p>see the butun denemeler</p></a></td>
+                        </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-5">
+        <h5> Degerlendirilmeyen denemeler(?) -- right aligned add button</h5>
+        <a href="{% url 'exams:create' %}"><button class="btn btn-primary"> add exam </button></a>
+        <hr>
+        <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Tarih</th>
+                <th scope="col">Status</th>
+                <th scope="col">Task</th>
+              </tr>
+            </thead>
+            <tbody>
+                    {% for object in object_list %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td><a href="{% url 'exams:detail' pk=object.pk %}">{{ object.title }}</a></td>
+                            <td>{{ object.timestamp|date:"d M, Y" }}</td>
+                            <td>Degerlendirilmedi</td>
+                            <!-- {{ object.grade }} add this to model -->
+                            <td><a href=""><button class="btn btn-sm btn-warning">Degerlendir</button></a></td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                            <td colspan="6" style="text-align: center;"> <a href=""><p>see the butun denemeler</p></a></td>
+                        </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- {% for object in object_list %}
+    <a href="{% url 'exams:detail' pk=object.pk %}">{{ object.title }} on {{ object.timestamp}}</a>
+    <p></p>
+{% empty %}
+<h1>no exams yet</h1>
+{% endfor %} -->
+
+{% endblock content %}

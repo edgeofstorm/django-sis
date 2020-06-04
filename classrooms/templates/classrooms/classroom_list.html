@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+
+    <div class="jumbotron">
+        <h1>Classrooms</h1>
+    </div>
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <ul>
+            {% for object in object_list %}
+              <li><a href="{% url 'classrooms:detail' pk=object.pk %}">{{ object }}</a></li>
+            {% empty %}
+              <p>There are no classrooms atm</p>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+            
+</div>
+{% endblock content %}

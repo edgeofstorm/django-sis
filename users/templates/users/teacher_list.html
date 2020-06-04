@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    {% for teacher in object_list  %}
+    <div class="col">
+        <a href="{% url 'users:teacher_detail' pk=teacher.pk %}">{{ teacher.user.username }}</a>
+    </div>
+    {% empty %}
+    <p>there are no teachers atm</p>
+    {% endfor %}
+</div>
+{% endblock content %}

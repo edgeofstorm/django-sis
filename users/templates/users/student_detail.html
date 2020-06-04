@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+
+    <!-- CHART -->
+    <div class="col-5">
+        <div class="row">
+            <div class="col-8 mx-auto">
+                <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="options" id="option1" checked> son 5
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option2"> this month
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="options" id="option3"> Tum Denemeler
+                    </label>
+                </div>
+                <!-- <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary">this month</button>
+                    <button type="button" class="btn btn-secondary">son 5</button>
+                    <button type="button" class="btn btn-secondary">Tum Denemeler</button>
+                  </div> -->
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col">
+                <canvas id="myChart2" width="450"  height="275"></canvas>   <!-- width="450" -->
+            </div>
+        </div>
+    </div>
+
+    <!-- INFO -->
+     <div class="col-3">
+        <div class="alert alert-warning" role="alert">
+                    <h2>Info </h2>
+                    <hr>
+                    {% if object.user.first_name %}
+                        <p>Name : {{ object.user.first_name }}</p>
+                        <p>Surname : {{ object.user.last_name }}</p>
+                    {% else %}
+                        <p>Name : {{ object.user.username }}</p>
+                    {% endif %}
+                    <p>Sinif : {{ object.classroom }}</p>
+                    <p>Basari durumu(basarili,vasat,basarisiz) : Custom managermodel and queryset and define
+                        success_rate() filter based on exams etc</p>
+                    <p>Advisor : <a href=""> {{ object.classroom.advisor }}</a></p>
+                </div>
+    </div>
+
+    <!-- EXAM RESULST TABLE -->
+    <div class="col-4">
+        <h1>last 5 exam results</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Net</th>
+                    <th scope="col">Puan</th>
+                    <th scope="col">Sinif</th>
+                    <th scope="col">Tarih</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if last_exams_results %}
+                {% for exam in last_exams_results  %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="">{{ exam.exam }}</a></td>
+                    <td>{{ exam.result }}</td>
+                    <td>450</td>
+                    <td><a href="">{{ exam.student.classroom }}</a></td>
+                    <td>{{ exam.exam.timestamp|date:"d M, Y" }}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="row pt-3">
+
+    <!-- CALENDAR -->
+    <div class="col-8">
+        <h3>Ders Programi </h3>
+        {% include 'base/snippets/calendar.html' %}
+    </div>
+
+    <!-- INFO -->
+    <div class="col-4">
+        <div class="row">
+            <div class="col-8 mx-auto">
+                <div class="alert alert-warning" role="alert">
+                    <h2>Info </h2>
+                    <hr>
+                    <p>Name : {{ object.user.username }}</p>
+                    <p>Surname : {{ object.user.lastname }}</p>
+                    <p>Sinif : {{ object.classroom }}</p>
+                    <p>Basari durumu(basarili,vasat,basarisiz) : Custom managermodel and queryset and define
+                        success_rate() filter based on exams etc</p>
+                    <p>Advisor : <a href=""> {{ object.classroom.advisor }}</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8 mx-auto">
+                <div class="alert alert-primary" role="alert">
+                    <h2>Contact Info </h2>
+                    <hr>
+                    <p>Advisor Name: <a href=""> {{ object.classroom.advisor.user.username }}</a></p>
+                    <p>Advisor email: <a href=""> {{ object.classroom.advisor.user.email }}</a></p>
+                    <p>Advisor Phone: <a href=""> {{ object.classroom.advisor.phone }}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>new Chart(document.getElementById("myChart2"),{"type":"line","data":{"labels":["Deneme1","Deneme2","Deneme3","Deneme4","Deneme5"],"datasets":[{"label":"Net Sayisi","data":[72,68,80,75,71],"fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}]},"options":{responsive:true,scales: {yAxes: [{ticks: {min: 50}}]}}});</script>
+<!-- <script>
+    var ctx = document.getElementById('myChart2');
+    var ctx = 'myChart2'
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Deneme1', 'Deneme2', 'Deneme3', 'Deneme4', 'Deneme5'],
+            datasets: [{
+                fill: false,
+                label: 'Net',
+                data: [56, 63, 62, 74, 80],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1
+            }],
+                "lineTension":0.1
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    ctx.lineJoin = "bevel";</script> -->
+{% endblock content %}

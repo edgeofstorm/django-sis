@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-4">
+        <div class="alert alert-warning" role="alert">
+            <h2>Info </h2>
+            <hr>
+            <p>Name : {{ object.user.username }}</p>
+            <p>Surname : {{ object.user.lastname }}</p>
+            <p>Sinif : {{ object.classroom }}</p>
+            <p>Basari durumu(basarili,vasat,basarisiz) : Custom managermodel and queryset and define success_rate() filter based on exams etc</p>
+            <p>Advisor : <a href=""> {{ object.classroom.advisor }}</a></p>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="alert alert-primary" role="alert">
+            <h2>Contact Info </h2>
+            <hr>
+            <p>Advisor Name: <a href=""> {{ object.classroom.advisor.user.username }}</a></p>
+            <p>Advisor email: <a href=""> {{ object.classroom.advisor.user.email }}</a></p>
+            <p>Advisor Phone: <a href=""> {{ object.classroom.advisor.phone }}</a></p>
+        </div>
+    </div>
+    <div class="col-4">
+        <h1>last 3 exam results</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Net</th>
+                    <th scope="col">Puan</th>
+                    <th scope="col">Sinif</th>
+                    <th scope="col">Tarih</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if last_exams_results %}
+                {% for exam in last_exams_results  %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="">{{ exam.exam }}</a></td>
+                    <td>{{ exam.result }}</td>
+                    <td>450</td>
+                    <td><a href="">{{ exam.student.classroom }}</a></td>
+                    <td>{{ exam.exam.timestamp|date:"d M, Y" }}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark Otto</td>
+                    <td>30</td>
+                    <td>450</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob Thornton lenghtehend btch</td>
+                    <td>40</td>
+                    <td>430</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry the bird</td>
+                    <td>50</td>
+                    <td>410</td>
+                    <td>C</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-8">
+        <h3>Event Calendar </h3>
+        {% include 'base/snippets/calendar.html' %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+
+    <div class="jumbotron">
+        <h1>{{ object }}</h1>
+    </div>
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <ul>
+            {% for student in classroom.student_set.all %}
+              <li><a href="{% url 'classrooms:detail' pk=object.pk %}"><a href="{% url 'users:student_detail' pk=student.pk %}"> {{ student.user.username }}</a></a></li>
+            {% empty %}
+              <p>There are no students in this class atm</p>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+            
+</div>
+{% endblock content %}
