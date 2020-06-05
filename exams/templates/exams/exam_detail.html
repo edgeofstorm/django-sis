@@ -29,7 +29,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <h2><a href="">student progress</a></h2>
+        <h2><a href="">raw file</a></h2>
     </div>
     <div class="col-4">
         <h3>Charts</h3>
@@ -37,7 +37,13 @@
 </div>
 <div class="row">
     <div class="col">
-        <h2><a href="">student progress</a></h2>
+        {% if object.sheet %}
+        <a href="{{ object.sheet.url }}"><button class="btn btn-warning">Download the exam</button></a>
+        <!-- <a href="/media/structure_ISi60Jl.txt">structure_ISi60Jl.txt</a>
+        <p> {{ object.sheet.url }} </p>
+        <p> {{ object.sheet.type }} </p>
+        -->
+        {% endif %}
     </div>
 </div>
 {% else %}

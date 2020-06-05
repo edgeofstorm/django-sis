@@ -25,8 +25,12 @@ a {
   color: white !important;
 }
 
-.bg-custom{
+.bg-nav{
   background-color: #c5aa6a;
+}
+
+.bg-sidebar{
+  background-color: #a6a6a6;
 }
 
 .nav-link:hover {
@@ -58,6 +62,7 @@ a {
     width: 200px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     left: 0;
+    /* background-image: url("forest.jpg") !important; */
   }
 }
 

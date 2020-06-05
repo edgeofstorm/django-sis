@@ -10,6 +10,13 @@ from django.urls import reverse_lazy
 class ExamListView(generic.ListView):
     model = Exam
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['uneval_exams'] = []
+        for exam in Exam.objects.all():
+            if not exam.result.exists():
+                context['uneval_exams'].append(exam)
+        return context
 
 class ExamDetailView(generic.DetailView):
     model = Exam

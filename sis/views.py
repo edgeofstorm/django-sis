@@ -11,7 +11,11 @@ class HomeView(generic.TemplateView):
 
     def get_context_data(self,*args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['last_exam'] = Exam.objects.last()
+        # Exam.objects.filter(result__student=stud)
+        # for exam in Exam.objects.all().order_by('-timestamp'):
+        #     if exam.result.exists():
+        #         context['last_exam'] = exam
+        context['last_exam'] = Exam.objects.filter(result__isnull=False).last()
         context['stud_count'] = Student.objects.count()
         context['teacher_count'] = Teacher.objects.count()
         context['principal_count'] = 0

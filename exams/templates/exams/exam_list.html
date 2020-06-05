@@ -47,12 +47,12 @@
               </tr>
             </thead>
             <tbody>
-                    {% for object in object_list %}
+                    {% for exam in uneval_exams %}
                         <tr>
                             <th scope="row">{{ forloop.counter }}</th>
-                            <td><a href="{% url 'exams:detail' pk=object.pk %}">{{ object.title }}</a></td>
-                            <td>{{ object.timestamp|date:"d M, Y" }}</td>
-                            <td>Degerlendirilmedi</td>
+                            <td><a href="{% url 'exams:detail' pk=exam.pk %}">{{ exam.title }}</a></td>
+                            <td>{{ exam.timestamp|date:"d M, Y" }}</td>
+                            <td>Sonuclanmadi</td>
                             <!-- {{ object.grade }} add this to model -->
                             <td><a href=""><button class="btn btn-sm btn-warning">Degerlendir</button></a></td>
                         </tr>
