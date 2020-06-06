@@ -4,3 +4,4 @@ from . import models
 
 admin.site.register(models.Exam)
 admin.site.register(models.ExamResult)
+admin.site.register(models.ExamStudentAnswer)

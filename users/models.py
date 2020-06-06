@@ -8,7 +8,7 @@ class Teacher(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     subject = models.CharField(max_length=50)
     joined_date = models.DateTimeField() # timestamp
-    phone = models.CharField(max_length=9)
+    phone = models.CharField(max_length=11)
 
     def __str__(self):
         return self.user.username

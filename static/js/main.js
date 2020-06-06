@@ -1,40 +1,41 @@
-$( document ).ready(function() {
-    var ctx = $('#myChart');
-    var ctx = 'myChart'
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
+$(document).ready(function () {
+    $("#option2").click(function(){
+        $("#myChart2").css('display','none')
+        $("#myChart3").css('display','block')
+      });
+      $("#option1").click(function(){
+        $("#myChart3").css('display','none')
+        $("#myChart2").css('display','block')
+      });
+    //   $("#chart-type-option1").click(function(){
+    //     $("#myChart2-line").css('display','none')
+    //     $("#myChart3-line").css('display','block')
+    //   });
+    //   $("#chart-type-option2").click(function(){
+    //     $("#myChart2").css('display','none')
+    //     $("#myChart3").css('display','block')
+    //   });
 });
+
+// new Chart(document.getElementById("myChart2"), { 
+//     "type": "line",
+//     "data": { 
+//         "labels": [{% for exam_result in exams_all %}'{{exam_result.exam.title}},{{exam_result.exam.timestamp|date:"d M Y"}}',{% endfor %}],
+//         "datasets": [
+//                 { 
+//                     "label": "Net Sayisi",
+//                     "data": [{% for exam_result in exams_all %}'{{ exam_result.result.Net }}', {% endfor %}],
+//                     "fill": false,
+//                     "borderColor": "rgb(75, 192, 192)",
+//                     "lineTension": 0.1
+//                 },
+//                 {
+//                     "label": "Matematik Net",
+//                     "data": [{% for exam_result in exams_all %}'{{ exam_result.result.Yanlis.M }}', {% endfor %}],
+//                     "fill": false,
+//                     "borderColor": "rgb(75, 255, 192)",
+//                     "lineTension": 0.1
+//                 }
+//             ]
+//         },
+//     "options": { responsive: true, scales: { yAxes: [{ ticks: { min: 50, max: 80 } }] } }});
