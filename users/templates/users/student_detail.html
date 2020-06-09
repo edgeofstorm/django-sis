@@ -19,138 +19,44 @@
                         <input type="radio" name="options" id="option3"> Tum Denemeler
                     </label>
                 </div>
-                <!-- <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary">this month</button>
-                    <button type="button" class="btn btn-secondary">son 5</button>
-                    <button type="button" class="btn btn-secondary">Tum Denemeler</button>
-                  </div> -->
             </div>
         </div>
         <div class="row pt-3">
             <div class="col">
-                <canvas id="myChart2" width="450"  height="275"></canvas>   <!-- width="450" -->
-                <canvas id="myChart3" style="display:none;" width="450"  height="275"></canvas>   <!-- width="450" -->
-                <!-- <button class="btn btn-warning" id="modal">click me</button> -->
-
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-                    click me
-                </button>
-                <!-- Modal -->
-                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header text-center">
-                        <h5 class="modal-title w-100" id="exampleModalLabel"><a href="">LGS-HAZIRLIK-1</a></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row mb-4">
-                                <div class="col-sm-3">
-                                  <div class="card">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Turkce</h5>
-                                      <hr>
-                                      <p class="card-text">Net: 18 </p>
-                                      <p class="card-text">Yanlis yaptigin sorular: <a href=""> 5. </a> </p>
-                                      <p class="card-text">Bos biraktigin sorular: <a href=""> 13. </a></p>
-                                      <div class="row">
-                                        <div class="col-12 px-0">
-                                            <a href="#" class="btn btn-sm btn-primary ">Cozumleri goruntule</a>
-                                        </div>
-                                    </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="card">
-                                      <div class="card-body">
-                                        <h5 class="card-title">Sosyal</h5>
-                                        <hr>
-                                        <p class="card-text">Net: 19 </p>
-                                        <p class="card-text">Yanlis yaptigin sorular: <a href=""> Yok </a> </p>
-                                        <p class="card-text">Bos biraktigin sorular: <a href=""> 15. </a></p>
-                                        <div class="row">
-                                            <div class="col-12 px-0">
-                                                <a href="#" class="btn btn-sm btn-primary ">Cozumleri goruntule</a>
-                                            </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="card">
-                                      <div class="card-body">
-                                        <h5 class="card-title">Matematik</h5>
-                                        <hr>
-                                        <p class="card-text">Net: 16 </p>
-                                        <p class="card-text">Yanlis yaptigin sorular: <a href=""> 5. , 9. </a> </p>
-                                        <p class="card-text">Bos biraktigin sorular: <a href=""> 13. , 17. </a></p>
-                                        <div class="row">
-                                            <div class="col-12 px-0">
-                                                <a href="#" class="btn btn-sm btn-primary ">Cozumleri goruntule</a>
-                                            </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="card">
-                                      <div class="card-body">
-                                        <h5 class="card-title">Fen</h5>
-                                        <hr>
-                                        <p class="card-text">Net: 18 </p>
-                                        <p class="card-text">Yanlis yaptigin sorular: <a href=""> 3. </a> </p>
-                                        <p class="card-text">Bos biraktigin sorular: <a href=""> 15. </a></p>
-                                        <div class="row">
-                                            <div class="col-12 px-0">
-                                                <a href="#" class="btn btn-sm btn-primary ">Cozumleri goruntule</a>
-                                            </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                              </div>
-                              <p></p>
-                              <hr>
-                              <div class="row my-4">
-                                  <div class="col-3 mx-auto">
-                                    <button class="btn btn-warning mr-auto">Cozumleri gor</button>
-                                  </div>
-                                  <div class="col-3 mx-auto">
-                                    <button class="btn btn-warning">Sinavi goruntule</button>
-                                  </div>
-                              </div>    
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-
+                <canvas id="myChart2" width="450" height="275"></canvas> <!-- width="450" -->
+                <canvas id="myChart3" style="display:none;" width="450" height="275"></canvas> <!-- width="450" -->
+                <!-- modal -->
             </div>
         </div>
     </div>
 
     <!-- INFO -->
-     <div class="col-3">
+    <div class="col-3">
         <div class="alert alert-warning" role="alert">
-                    <h2>Info </h2>
+            <h2>Info </h2>
+            <hr>
+            {% if object.user.first_name %}
+            <p>Name : {{ object.user.first_name }}</p>
+            <p>Surname : {{ object.user.last_name }}</p>
+            {% else %}
+            <p>Name : {{ object.user.username }}</p>
+            {% endif %}
+            <p>Sinif : {{ object.classroom }}</p>
+            <!-- Basari durumu(basarili,vasat,basarisiz) : Custom managermodel and queryset and define success_rate() filter based on exams etc -->
+            <p>Basari durumu : {{ success_status }}</p>
+            <p>Advisor : <a href=""> {{ object.classroom.advisor }}</a></p>
+        </div>
+        <!-- <div class="row">
+            <div class="col">
+                <div class="alert alert-primary" role="alert">
+                    <h2>Contact Info </h2>
                     <hr>
-                    {% if object.user.first_name %}
-                        <p>Name : {{ object.user.first_name }}</p>
-                        <p>Surname : {{ object.user.last_name }}</p>
-                    {% else %}
-                        <p>Name : {{ object.user.username }}</p>
-                    {% endif %}
-                    <p>Sinif : {{ object.classroom }}</p>
-                    <p>Basari durumu(basarili,vasat,basarisiz) : Custom managermodel and queryset and define
-                        success_rate() filter based on exams etc</p>
-                    <p>Advisor : <a href=""> {{ object.classroom.advisor }}</a></p>
+                    <p>Advisor Name: <a href=""> {{ object.classroom.advisor.user.username }}</a></p>
+                    <p>Advisor email: <a href=""> {{ object.classroom.advisor.user.email }}</a></p>
+                    <p>Advisor Phone: <a href=""> {{ object.classroom.advisor.phone }}</a></p>
                 </div>
+            </div>
+        </div> -->
     </div>
 
     <!-- EXAM RESULST TABLE -->
@@ -169,15 +75,20 @@
             </thead>
             <tbody>
                 {% if last_exams_results %}
-                {% for exam in last_exams_results  %}
+                {% for exam_result in last_exams_results  %}
                 <tr>
                     <th scope="row">{{ forloop.counter }}</th>
-                    <td><a href="">{{ exam.exam }}</a></td>
-                    <td>{{ exam.result.Net }}</td>
+                    <td>
+                        {% comment %} data-target=".bd-example-modal-lg" {% endcomment %}
+                        <a href="{% url 'exams:solutions_detail' pk=exam_result.pk %}" data-toggle="modal"
+                            data-target="#myModal{{ exam_result.exam.id }}">{{ exam_result.exam }}</a>
+                    </td>
+                    <td>{{ exam_result.result.Net|floatformat }}</td>
                     <td>450</td>
-                    <td><a href="">{{ exam.student.classroom }}</a></td>
-                    <td>{{ exam.exam.timestamp|date:"d M, Y" }}</td>
+                    <td><a href="">{{ exam_result.student.classroom }}</a></td>
+                    <td>{{ exam_result.exam.timestamp|date:"d M, Y" }}</td>
                 </tr>
+                {% include 'users/snippets/student/modal.html' with student=object result=exam_result exam=exam_result.exam img=image %}
                 {% endfor %}
                 {% endif %}
             </tbody>
@@ -228,62 +139,129 @@
 <script src="{% static 'js/main.js' %}"></script>
 <!-- <script>new Chart(document.getElementById("myChart2"),{"type":"line","data":{"labels":[{% for exam_result in exams_all  %}'{{exam_result.exam.title}},{{exam_result.exam.timestamp|date:"d M Y"}}',{% endfor %}],"datasets":[{"label":"Net Sayisi","data":[{% for y in mat_yanlislar %}'{{ y }}',{% endfor %}],"fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}]},"options":{responsive:true,scales: {yAxes: [{ticks: {min: 0,max:20}}]}}});</script> -->
 <script>
-    new Chart(document.getElementById("myChart2"), { 
+    var chart = new Chart(document.getElementById("myChart2"), {
         "type": "line",
-        "data": { 
-            "labels": [{% for exam_result in exams_all %}'{{exam_result.exam.title|cut:" HAZIRLIK"}}',{% endfor %}],//,{{exam_result.exam.timestamp|date:"d M Y"}}
-            "datasets": [
-                    { 
-                        "label": "Net Sayisi",
-                        "data": [{% for exam_result in exams_all %}'{{ exam_result.result.Net }}', {% endfor %}],
-                        "fill": false,
-                        "borderColor": "rgb(75, 192, 192)",
-                        "lineTension": 0.1
+        "data": {
+            "labels": [{% for exam_result in exams_all %}'{{exam_result.exam.title}},{{exam_result.exam.id}}',{% endfor %}],// |cut:" HAZIRLIK" ,{{exam_result.exam.timestamp|date:"d M Y"}}
+    "datasets": [
+        {
+            "label": "Net Sayisi",
+            "data": [{% for exam_result in exams_all %}'{{ exam_result.result.Net|floatformat }}', {% endfor %}],
+        "fill": false,
+            "borderColor": "rgb(75, 192, 192)",
+                "lineTension": 0.1
                     }
                 ]
             },
-        "options": { responsive: true, scales: { yAxes: [{ ticks: { min: 50, max: 80 } }] } }});
+    "options": {
+        responsive: true,
+            scales: {
+            xAxes: [{
+                ticks: {
+                    callback: function (value) {
+                        //value.indexOf(',')
+                        return value.substr(0, 4) + value.substr(value.length - 4, value.length);//truncate
+                    },
+                    fontSize: 10
+                }
+            }],
+                yAxes: [{
+                    ticks: {
+                        min: 50, max: 80
+                    }
+                }]
+        },
+        legend: {
+            labels: {
+                fontColor: 'red',
+                fontSize: 5
+            }
+        },
+        // This chart will not respond to mousemove, etc
+        //events: ['click']
+    }});
 
-    new Chart(document.getElementById("myChart3"), { 
+    var myChart3 = new Chart(document.getElementById("myChart3"), {
         "type": "bar",
-        "data": { 
-            "labels": [{% for exam_result in exams_all %}'{{exam_result.exam.title|cut:" HAZIRLIK"}}',{% endfor %}],//,{{exam_result.exam.timestamp|date:"d M Y"}}
-            "datasets": [
-                    {
-                        "label": "Matematik Net",
-                        "data": [{% for y in mat_yanlislar %}'{{ y }}',{% endfor %}],
-                        "fill": false,
-                        "backgroundColor": "rgba(255, 99, 132, 0.2)",
-                        "borderColor": "rgb(175, 255, 192)",
-                        "lineTension": 0.1
+        "data": {
+            "labels": [{% for exam_result in exams_all %}'{{exam_result.exam.title}}',{% endfor %}],// |cut:" HAZIRLIK" ,{{exam_result.exam.timestamp|date:"d M Y"}}
+    "datasets": [
+        {
+            "label": "Matematik Net",
+            "data": [{% for y in mat_yanlislar %}'{{ y }}', {% endfor %}],
+        "fill": false,
+            "backgroundColor": "rgba(255, 99, 132, 0.2)",
+                "borderColor": "rgb(175, 255, 192)",
+                    "lineTension": 0.1
                     },
-                    {
-                        "label": "Fen Net",
-                        "data": [{% for y in fen_yanlislar %}'{{ y }}',{% endfor %}],
-                        "fill": false,
-                        "backgroundColor": "rgba(255, 150, 132, 0.2)",
-                        "borderColor": "rgb(68, 225, 192)",
-                        "lineTension": 0.1
+    {
+        "label": "Fen Net",
+            "data": [{% for y in fen_yanlislar %} '{{ y }}', {% endfor %}],
+    "fill": false,
+        "backgroundColor": "rgba(255, 150, 132, 0.2)",
+            "borderColor": "rgb(68, 225, 192)",
+                "lineTension": 0.1
                     },
-                    {
-                        "label": "Sosyal Net",
-                        "data": [{% for y in sosyal_yanlislar %}'{{ y }}',{% endfor %}],
-                        "fill": false,
-                        "backgroundColor": "rgba(255, 99, 50, 0.2)",
-                        "borderColor": "rgb(175, 155, 192)",
-                        "lineTension": 0.1
+    {
+        "label": "Sosyal Net",
+            "data": [{% for y in sosyal_yanlislar %} '{{ y }}', {% endfor %}],
+    "fill": false,
+        "backgroundColor": "rgba(255, 99, 50, 0.2)",
+            "borderColor": "rgb(175, 155, 192)",
+                "lineTension": 0.1
                     },
-                    {
-                        "label": "Turkce Net",
-                        "data": [{% for y in turkce_yanlislar %}'{{ y }}',{% endfor %}],
-                        "fill": false,
-                        "backgroundColor": "rgba(0, 99, 132, 0.2)",
-                        "borderColor": "rgb(175, 0, 255)",
-                        "lineTension": 0.1
+    {
+        "label": "Turkce Net",
+            "data": [{% for y in turkce_yanlislar %} '{{ y }}', {% endfor %}],
+    "fill": false,
+        "backgroundColor": "rgba(0, 99, 132, 0.2)",
+            "borderColor": "rgb(175, 0, 255)",
+                "lineTension": 0.1
                     },
                 ]
             },
-        "options": { responsive: true, scales: { yAxes: [{ ticks: { min: 0, max: 20 } }] } }});
+    "options": { responsive: true, scales: { yAxes: [{ ticks: { min: 0, max: 20 } }], xAxes:[{ticks:{fontSize:10}}] } }});
+
+    document.getElementById("myChart2").onclick = function (evt) {
+        var activePoints = chart.getElementsAtEvent(evt);
+        console.log('activePoints', activePoints)
+        console.log(activePoints)
+        if (activePoints.length > 0) {
+            //get the internal index of slice in pie chart
+            var clickedElementindex = activePoints[0]["_index"];
+
+            //get specific label by index 
+            var label = chart.data.labels[clickedElementindex];
+
+            //get value by index      
+            var value = chart.data.datasets[0].data[clickedElementindex];
+
+            console.log(label)
+            var examId = label.substr(label.indexOf(',')+1,label.length)
+            console.log(examId)
+            /* other stuff that requires slice's label and value */
+            $('#myModal'+examId).modal('show');
+  
+        }
+    }
+
+    document.getElementById("myChart3").onclick = function (evt) {
+        var activePoints = chart.getElementsAtEvent(evt);
+        console.log(activePoints)
+        if (activePoints.length > 0) {
+            //get the internal index of slice in pie chart
+            var clickedElementindex = activePoints[0]["_index"];
+
+            //get specific label by index 
+            var label = chart.data.labels[clickedElementindex];
+
+            //get value by index      
+            var value = chart.data.datasets[0].data[clickedElementindex];
+
+            console.log(label)
+            /* other stuff that requires slice's label and value */
+        }
+    }
 
     // function random_rgba() {
     // var o = Math.round, r = Math.random, s = 255;

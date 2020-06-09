@@ -1,7 +1,18 @@
 from django.contrib import admin
-from . import models
+from .models import Exam, ExamStudentAnswer, ExamResult, ExamSolution, QSolution
 # Register your models here.
 
-admin.site.register(models.Exam)
-admin.site.register(models.ExamResult)
-admin.site.register(models.ExamStudentAnswer)
+# class QSolutionInline(admin.TabularInline):
+#     model = QSolution
+
+# class ExamSolutionAdmin(admin.ModelAdmin):
+#     inlines = [
+#         QSolutionInline,
+#     ]
+
+admin.site.register(Exam)
+admin.site.register(ExamResult)
+admin.site.register(ExamStudentAnswer)
+admin.site.register(ExamSolution)
+admin.site.register(QSolution)
+# admin.site.register(ExamSolution, ExamSolutionAdmin)

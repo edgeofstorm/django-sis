@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Student, Teacher
-from exams.models import Exam
+from exams.models import Exam, ExamResult, ExamSolution, QSolution
 import json
 # Create your views here.
 
@@ -9,6 +9,14 @@ import json
 class StudentListView(generic.ListView):
     model = Student
 
+# class ModalTemplateView(generic.TemplateView):
+#     template_name="users/snippets/student/modal.html"
+
+#     def get_context_data(self,*args, **kwargs):
+#         context = super().get_context_data(*args,**kwargs)
+#         context["a"] = 'adgadgad'
+#         return context
+        
 
 class StudentDetailView(generic.DetailView):
     model = Student
@@ -24,10 +32,13 @@ class StudentDetailView(generic.DetailView):
         # for result in student.exam_results.all():
         #     mat_list.append(20-len(result.result['Yanlislar']['M']))
         # context['mat_yanlislar'] = mat_list
-        context['mat_yanlislar'] = get_yanlis_count(student,'M')
+        context['mat_yanlislar'] = get_yanlis_count(student,"M")
         context['fen_yanlislar'] = get_yanlis_count(student,'F')
         context['sosyal_yanlislar'] = get_yanlis_count(student,'S')
         context['turkce_yanlislar'] = get_yanlis_count(student,'T')
+        context['success_status'] = success_status(student)
+        context['image'] = student.exam_results.filter(exam__title='LGS HAZIRLIK - 5').first().exam.solutions.first().solutions.solution.url
+        #student.exam_results.first().exam.solutions.first().solutions.solution.url
 
         # item_dict = json.loads(json.dumps(context['exams_all'].first().result))
         # print (len(item_dict['Yanlislar']['M']))
@@ -43,8 +54,64 @@ class TeacherDetailView(generic.DetailView):
     model = Teacher
 
 
+class QTemplateView(generic.TemplateView):
+    template_name="users/snippets/student/modals/q_modal.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["q"] = 'Q_Q'
+        return context
+    
+
+
+def get_net_count(student,ders,*args, **kwargs):
+    net=0
+    for result in student.exam_results.all():
+        yanlis_list.append(20-len(result.result["Yanlislar"][ders]))
+    return yanlis_list
+
 def get_yanlis_count(student,ders,*args, **kwargs):
     yanlis_list = []
     for result in student.exam_results.all():
-        yanlis_list.append(20-len(result.result['Yanlislar'][ders]))
+        Exam.objects.filter(id=result.exam_id).evaluate(student.pk,Exam.objects.filter(id=result.exam_id).first().pk)
+        yanlis_list.append(20-len(result.result["Yanlislar"][ders]))
     return yanlis_list
+
+def success_status(student):
+    success=""
+    last=""
+    between=""
+    mean=0
+    last2_mean=0
+    for index,exam in enumerate(ExamResult.objects.filter(student=student)):
+        if index >= ExamResult.objects.filter(student=student).count() - 2:
+            last2_mean += int(exam.result['Net'])  
+        mean+=int(exam.result['Net'])
+    mean = mean / (ExamResult.objects.filter(student=student).count())
+    last2_mean /= 2 
+    if 70 < mean < 80:
+        success="basarili"
+        if last2_mean < mean:
+            between="fakat"
+        else:
+            between="ve"
+    elif 60 < mean < 70:
+        success="vasat"
+        if last2_mean < mean:
+            between="ve"
+        else:
+            between="fakat"
+    else:
+        success="basarisiz"
+        if last2_mean < mean:
+            between="ve"
+        else:
+            between="fakat"
+    if last2_mean < mean:
+        last="dususte"
+    else:
+        last="yukseliste"
+    #between = "ve" if 70 < mean < 80 and last2_mean > mean else "fakat" || "fakat" if mean < 70 and last2_mean > mean else "ve" ! Check nested ternary operator
+    print(f' sounc -> {success} {between} {last}')
+    return f'{success} {between} {last}'
+    

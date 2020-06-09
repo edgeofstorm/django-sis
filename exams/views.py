@@ -1,6 +1,6 @@
 from django.shortcuts import render , reverse, HttpResponseRedirect
 from django.views import generic
-from .models import Exam, ExamResult
+from .models import Exam, ExamResult, ExamSolution
 from .forms import ExamCreateForm
 import datetime
 from django.urls import reverse_lazy
@@ -12,6 +12,7 @@ class ExamListView(generic.ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
+        context['a'] = self.model.objects.evaluate(1,1)
         context['uneval_exams'] = []
         for exam in Exam.objects.all():
             if not exam.result.exists():
@@ -45,3 +46,15 @@ class ExamCreateView(generic.CreateView): # generic.edit.FormView
     #         return self.form_valid(form)
     #     else:
     #         return self.form_invalid(form)
+
+class ExamSolutionListView(generic.ListView):
+    model = ExamSolution
+
+class ExamSolutionDetailView(generic.DetailView):
+    model = ExamSolution
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["q1"] = self.model.objects.filter(subject='F').first()
+        return context
+    

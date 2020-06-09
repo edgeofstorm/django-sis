@@ -1,0 +1,106 @@
+{% load student_extras %}
+<div class="modal fade bd-example-modal-lg" id="myModal{{exam.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header text-center">
+                        {% comment %} {{result}} {% endcomment %}
+                        <h5 class="modal-title w-100" id="exampleModalLabel">{{fullname}} - <a href="{% url 'exams:detail' pk=result.exam.pk %}">{{result.exam}}</a> - {{result.exam.timestamp|date:"d M, Y"}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mb-4">
+                                <div class="col-sm-3">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Turkce</h5>
+                                      <hr>
+                                      <p class="card-text">Net: {{result.result|net:'T'|floatformat }} </p>
+                                      {% comment %} <a href="{% url 'exams:solutions_detail' pk=5 %}" > {{ value }} </a> , {% endcomment %}
+                                      <!-- {{result.exam.id}} -->
+                                      {% comment %} {{ -T-to brans }}  {% endcomment %}
+                                      <!-- -->
+                                      <p class="card-text">Yanlis yaptigin sorular:  {% for  value in result.result.Yanlislar.T %} <a href="{% url 'users:q_solution' pk=1 pk2=result.exam.id pk3=value %}" data-toggle="modal" data-target="#innerModal{{result.exam.id}}-T-{{value}}"> {{ value }} </a> {% include 'users/snippets/student/modals/q_modal.html' with exam=result.exam val=value subject='T' src=img %} {% empty %} Yok  {% endfor %}  </p>
+                                      <p class="card-text">Bos biraktigin sorular: {% for  value in result.result.Boslar.T %} <a href=""> {{ value }} </a> ,{% empty %} Yok  {% endfor %}  </p>
+                                      <div class="row">
+                                        <div class="col-12 px-0">
+                                          <!-- <button type="button" class="btn btn-sm btn-primary btn-block" data-toggle="modal" data-target=".bd-ex-modal-lg">Cozumleri goruntule</button> {% include 'users/snippets/student/modals/q_modal.html' with src=img %} -->
+                                          <button type="button" class="btn btn-sm btn-primary btn-block" data-toggle="modal" data-target="#myInnerModal1">
+                                            Cozumleri goruntule
+                                          </button>
+                                          <!-- Modal -->
+                                          {% include 'users/snippets/student/modals/q_modal.html' with src=img %}
+                                        
+                                            <!-- <a href="#" class="btn btn-sm btn-primary btn-block">Cozumleri goruntule</a> -->
+                                        </div>
+                                    </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="card">
+                                      <div class="card-body">
+                                        <h5 class="card-title">Sosyal</h5>
+                                        <hr>
+                                        <p class="card-text">Net: {{result.result|net:'S'|floatformat }} </p>
+                                        <p class="card-text">Yanlis yaptigin sorular: {% for  value in result.result.Yanlislar.S %} <a href=""> {{ value }} </a> ,{% empty %} Yok  {% endfor %}   </p>
+                                        <p class="card-text">Bos biraktigin sorular: {% for  value in result.result.Boslar.S %} <a href=""> {{ value }} </a> ,{% empty %} Yok  {% endfor %}  </p>
+                                        <div class="row">
+                                            <div class="col-12 px-0">
+                                                <a href="#" class="btn btn-sm btn-primary btn-block">Cozumleri goruntule</a>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="card">
+                                      <div class="card-body">
+                                        <h5 class="card-title">Matematik</h5>
+                                        <hr>
+                                        <p class="card-text">Net: {{result.result|net:'M'|floatformat }} </p>
+                                        <p class="card-text">Yanlis yaptigin sorular: {% for  value in result.result.Yanlislar.M %} <a href=""> {{ value }} </a> ,{% empty %} Yok  {% endfor %}  </p>
+                                        <p class="card-text">Bos biraktigin sorular: {% for  value in result.result.Boslar.M %} <a href=""> {{ value }} </a> ,{% empty %} Yok  {% endfor %}  </p>
+                                        <div class="row">
+                                            <div class="col-12 px-0">
+                                                <a href="#" class="btn btn-sm btn-primary btn-block">Cozumleri goruntule</a>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="card">
+                                      <div class="card-body">
+                                        <h5 class="card-title">Fen</h5>
+                                        <hr>
+                                        <p class="card-text">Net: {{result.result|net:'F'|floatformat }} </p>
+                                        <p class="card-text">Yanlis yaptigin sorular: {% for  value in result.result.Yanlislar.F %} <a href=""> {{ value }} </a> ,{% empty %} Yok  {% endfor %}  </p>
+                                        <p class="card-text">Bos biraktigin sorular: {% for  value in result.result.Boslar.F %} <a href=""> {{ value }} </a> ,{% empty %} Yok {% endfor %}  </p>
+                                        <div class="row">
+                                            <div class="col-12 px-0">
+                                                <a href="#" class="btn btn-sm btn-primary btn-block">Cozumleri goruntule</a>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                              <p></p>
+                              <hr>
+                              <div class="row my-4">
+                                  <div class="col-3 mx-auto">
+                                    <button class="btn btn-warning mr-auto">Cozumleri gor</button>
+                                  </div>
+                                  <div class="col-3 mx-auto">
+                                    <a class="btn btn-warning" href="{{ result.exam.sheet.url }}" target="_blank">Sinavi goruntule</a> 
+                                  </div>
+                              </div>    
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>

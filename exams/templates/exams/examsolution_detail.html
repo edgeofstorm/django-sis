@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-7 mx-auto">
+        {% comment %}{{object}} {% endcomment %}
+        <p></p>
+        <img src="{{q1.solutions.solution.url}}" alt="Bu sorunun cozumu mevcut degil">
+        {% comment %} {{q1.solutions.solution.url}} {% endcomment %}
+    </div>
+</div>
+
+
+{% endblock content %}

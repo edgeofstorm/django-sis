@@ -1,0 +1,43 @@
+{% load student_extras %}
+{% load get_img_url %}
+{% load static %}
+{% get_img_url exam subject val as img_url %}
+
+<div class="modal fade bd-ex-modal-lg" id="innerModal{{exam.id}}-T-{{val}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title w-100" id="exampleModalLabel">{{subject|label}} Question-{{val}} Solution</h5>
+                <button type="button" class="close" data-dismiss-modal="modal{{val}}" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% comment %} {{exam.title}},{{subject}},{{val}}  {% endcomment %}
+                {% comment %} "index=5&subject=F" {% endcomment %}
+                {% comment %} {% with {{exam|get_sol_img:f"{subject},{val}"|get_str}} as source %}{% endwith %}
+                {{exam|get_sol_img:f"{subject},{val}"|get_str}} {% endcomment %}
+                {% comment %} {% get_img_url exam subject val %} {% endcomment %}
+                {% comment %} {% with {% get_img_url exam subject val %} as img_url %}{% endwith %} {% endcomment %}
+                {% if img_url %}
+                    <img src="{{img_url}}" alt="{{src}}"> 
+                {% else %}
+                    <p>Malesef, aradigin sorunun cozumu mevcut degil</p>
+                    <img src="{{ MEDIA_URL }}/solutions/default.jpg" alt="{{src}}">
+                    <a href="" class="btn btn-primary btn-block">Make a request</a> 
+                {% endif %}
+                {% comment %} <img src="{% get_img_url exam subject val %}" alt="{{src}}"> {% endcomment %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss-modal="modal{{val}}">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("button[data-dismiss-modal=modal{{val}}]").click(function(){
+    $('#innerModal{{exam.id}}-T-{{val}}').modal('hide');
+});
+</script>

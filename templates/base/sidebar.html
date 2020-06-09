@@ -2,6 +2,7 @@
 {% url 'home' as home %}
 {% url 'classrooms:list' as classroomlist %}
 {% url 'users:student_list' as studentlist %}
+{% url 'users:teacher_list' as teacherlist %}
 <nav class="navbar navbar-light bg-sidebar ssidebar">
     <div class="container pt-0 mt-0">
         <ul class="navbar-nav pt-0">
@@ -27,8 +28,8 @@
             <li class="nav-item {% if request.path == studentlist %}active mx-auto{%endif%} py-2">
                 <a class="nav-link" href="{{ studentlist }}">Students</a>
             </li>
-            <li class="nav-item py-2">
-                <a class="nav-link" href="#">Link</a>
+            <li class="nav-item {% if request.path == teacherlist %}active mx-auto{%endif%} py-2">
+                <a class="nav-link" href="{{ teacherlist }}">Teachers</a>
             </li>
             <li class="nav-item py-2">
                 <a class="nav-link" href="#">Link</a>
